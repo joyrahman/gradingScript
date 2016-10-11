@@ -102,8 +102,8 @@ def main(input_dir):
                 k = test_k[q]
                 i = test_i[q]
                 data_file   = datafile[q]
-                output_file = correct_output[q]
-                result_file = test_output[q]
+                output_file = test_output[q]
+                result_file = correct_output[q]
                 
                 for m in range(0,total_test_iteration):
                     temp_result = subprocess.check_output(['./run_test_cmd.sh \
