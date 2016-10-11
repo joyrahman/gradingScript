@@ -5,9 +5,46 @@ import subprocess
 
 
 
+
+
 def main(input_dir):
     target_file_name = "k_means.c"
     source_zip  = "source.zip"
+    
+    datafile = [example1_k2_m10.txt,\
+        example2_k3_m30.txt,\
+        example3_k5_m500.txt,\
+        example4_k8_m10000.txt,\
+        example5_k10_m10000.txt,\
+        example6_k11_m1000.txt,\
+        example7_k12_m1000.txt,\
+        example8_k13_m1000.txt
+    ]
+    
+    correct_output = [example1.output.txt,\
+        example2.output.txt,\
+        example3.output.txt,\
+        example4.output.txt,\
+        example5.output.txt,\
+        example6.output.txt,\
+        example7.output.txt,\
+        example8.output.txt
+    ]
+    
+    test_output = [test1.txt,\
+        test2.txt,\
+        test3.txt,\
+        test4.txt,\
+        test5.txt,\
+        test6.txt,\
+        test7.txt,\
+        test8.txt
+    ]
+    test_k = [2,3,5,8,10,11,12,13]
+    test_i = [100,100,100,10000,10000,10000,10000,10000]
+    
+    
+    
 
     subprocess.call(["find -name \"* *\" -type f | rename 's/ /#/g'"], shell=True)
 
@@ -53,21 +90,29 @@ def main(input_dir):
             #testcase1
             print ("Test1")
             num_thread = 8
-            k = 2
-            i = 100
-            data_file = "example1_k2_m10.txt" 
-            output_file = "test1.txt"
-            result_file = "example1.output.txt"
-            total_test = 20
-            for m in range(0,total_test):
-
-                temp_result = subprocess.check_output(['./run_test_cmd.sh \
-                        {} {} {} {} {} {} {}'.format(num_thread, data_file, \
-                    k, i ,output_file, result_file, output_dir)], shell=True)
+            #k = 2
+            #i = 100
+            #data_file = "example1_k2_m10.txt" 
+            #output_file = "test1.txt"
+            #result_file = "example1.output.txt"
+            total_test = 8
+            total_test_iteration = 20
+            
+            for q in range(0,total_test):
+                k = test_k[q]
+                i = test_i[q]
+                data_file   = datafile[q]
+                output_file = correct_output[q]
+                result_file = test_output[q]
                 
-                val = int(temp_result)
-                if (val==-1):
-                    testcase_result[0] = [False]
+                for m in range(0,total_test_iteration):
+                    temp_result = subprocess.check_output(['./run_test_cmd.sh \
+                            {} {} {} {} {} {} {}'.format(num_thread, data_file, \
+                        k, i ,output_file, result_file, output_dir)], shell=True)
+                    
+                    val = int(temp_result)
+                    if (val==-1):
+                        testcase_result[q] = [False]
 
             print testcase_result 
             #DIFF=$(diff ./test1 ../../correct_output/test1)
