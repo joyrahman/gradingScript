@@ -11,34 +11,34 @@ def main(input_dir):
     target_file_name = "k_means.c"
     source_zip  = "source.zip"
     
-    datafile = [example1_k2_m10.txt,\
-        example2_k3_m30.txt,\
-        example3_k5_m500.txt,\
-        example4_k8_m10000.txt,\
-        example5_k10_m10000.txt,\
-        example6_k11_m1000.txt,\
-        example7_k12_m1000.txt,\
-        example8_k13_m1000.txt
+    datafile = ['example1_k2_m10.txt',\
+        'example2_k3_m30.txt',\
+        'example3_k5_m500.txt',\
+        'example4_k8_m10000.txt',\
+        'example5_k10_m10000.txt',\
+        'example6_k11_m1000.txt',\
+        'example7_k12_m1000.txt',\
+        'example8_k13_m1000.txt'
     ]
     
-    correct_output = [example1.output.txt,\
-        example2.output.txt,\
-        example3.output.txt,\
-        example4.output.txt,\
-        example5.output.txt,\
-        example6.output.txt,\
-        example7.output.txt,\
-        example8.output.txt
+    correct_output = ['example1.output.txt',\
+        'example2.output.txt',\
+        'example3.output.txt',\
+        'example4.output.txt',\
+        'example5.output.txt',\
+        'example6.output.txt',\
+        'example7.output.txt',\
+        'example8.output.txt'
     ]
     
-    test_output = [test1.txt,\
-        test2.txt,\
-        test3.txt,\
-        test4.txt,\
-        test5.txt,\
-        test6.txt,\
-        test7.txt,\
-        test8.txt
+    test_output = ['test1.txt',\
+        'test2.txt',\
+        'test3.txt',\
+        'test4.txt',\
+        'test5.txt',\
+        'test6.txt',\
+        'test7.txt',\
+        'test8.txt'
     ]
     test_k = [2,3,5,8,10,11,12,13]
     test_i = [100,100,100,10000,10000,10000,10000,10000]
