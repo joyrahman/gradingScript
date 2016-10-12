@@ -193,7 +193,9 @@ def main(input_dir):
             
             final_result = "ID:{}, TestCase Score:{}, Performance_Score:{}, Extra_Points:{},Exec8:{},Exec1:{},Percentage:{}".format(user_id, total_test_score, perf_score, extra_point,exec8, exec1,perf_val)
             print(final_result)
-            csv_result = "{},{},{},{},{},{},{}".format(user_id, total_test_score, perf_score, extra_point,exec8, exec1,perf_val)
+            comments = "TestCase_Passed:{},TestCase_Score:{},Performance_Score:{},ExecTime_8thread:{},ExecTime_1thread:{},Percentage_Improvement:{}".format(testcase_result,total_test_score,perf_score,exec8,exec1,perf_val)
+            total_score =  total_test_score + perf_score
+            csv_result = "{}\t{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point))
             with open(grade_file,'wa') as f:
                 f.write(final_result)
                 
