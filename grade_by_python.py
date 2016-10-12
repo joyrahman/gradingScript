@@ -104,7 +104,7 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
                 data_file   = datafile[q]
                 output_file = test_output[q]
                 result_file = correct_output[q]
-                print("Running Test:{}".format(q))
+                print("Test:{}".format(q))
                 
                 for m in range(0,total_test_iteration):
                     temp_result = subprocess.check_output(['./run_test_cmd.sh \
@@ -112,7 +112,12 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
                         k, i ,output_file, result_file, output_dir)], shell=True)
                     
                     val = int(temp_result)
-                    print ("Test Result:",val)
+                    #print the test result
+                    if(val==0):
+                        print ".",
+                    else:
+                        print "!",
+                    
                     if (val==-1):
                         testcase_result[q] = [False]
                 
@@ -197,7 +202,7 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
             print(final_result)
             comments = "TestCase_Passed:{},TestCase_Score:{},Performance_Score:{},ExecTime_8thread:{},ExecTime_1thread:{},Percentage_Improvement:{}".format(testcase_result,total_test_score,perf_score,exec8,exec1,perf_val)
             total_score =  total_test_score + perf_score
-            csv_result = "{}\t{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point)
+            csv_result = "{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point)
             with open(grade_file,'wa') as f:
                 f.write(final_result)
                 
