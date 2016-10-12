@@ -7,11 +7,8 @@ import subprocess
 
 
 
-def main(input_dir):
-    target_file_name = "k_means.c"
-    source_zip  = "source.zip"
-    grade_file = "assignment3.csv"
-    
+def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
+
     datafile = ['example1_k2_m10.txt',\
         'example2_k3_m30.txt',\
         'example3_k5_m500.txt',\
@@ -48,9 +45,9 @@ def main(input_dir):
     
 
     subprocess.call(["find -name \"* *\" -type f | rename 's/ /#/g'"], shell=True)
-
+    
     for filename in os.listdir(input_dir):
-        if 'k_means.c' in filename:
+        if file_name_pattern in filename:
             #get user id 
             user_id = filename.split('OpenMP_')[1].split('_',1)[0]
             print user_id
@@ -181,12 +178,17 @@ def main(input_dir):
 
 
             # do the extra point calculation
+            base = 1.9
+            low_base = 1.5
+            lower_val = 2
+            upper_val = 10
+            
 
-            extra_point = ( (1.9-exec8)*10 / (1.9-1.5) ) + 2 
-            if extra_point > 10:
-                extra_point = 10
-            elif extra_point <2:
-                extra_point =  2
+            extra_point = ( (base-exec8)*10 / (base-low_base) ) + lower_val
+            if extra_point > upper_val:
+                extra_point = upper_val
+            elif extra_point < lower_val:
+                extra_point =  lower_val
 
 
             # write the result to the file
@@ -195,7 +197,7 @@ def main(input_dir):
             print(final_result)
             comments = "TestCase_Passed:{},TestCase_Score:{},Performance_Score:{},ExecTime_8thread:{},ExecTime_1thread:{},Percentage_Improvement:{}".format(testcase_result,total_test_score,perf_score,exec8,exec1,perf_val)
             total_score =  total_test_score + perf_score
-            csv_result = "{}\t{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point))
+            csv_result = "{}\t{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point)
             with open(grade_file,'wa') as f:
                 f.write(final_result)
                 
@@ -216,4 +218,9 @@ def main(input_dir):
 if __name__ == "__main__":
     #define the global var here
     input_dir =  './submission'
-    main(input_dir)
+    target_file_name = "k_means.c"
+    source_zip  = "source.zip"
+    grade_file = "assignment3.csv"
+    file_name_pattern = "k_means.c"
+    
+    main(input_dir,target_file_name,source_zip,grade_file,file_name_pattern)
