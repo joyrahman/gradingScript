@@ -202,7 +202,7 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
             print(final_result)
             comments = "TestCase_Passed:{},TestCase_Score:{},Performance_Score:{},ExecTime_8thread:{},ExecTime_1thread:{},Percentage_Improvement:{}".format(testcase_result,total_test_score,perf_score,exec8,exec1,perf_val)
             total_score =  total_test_score + perf_score
-            csv_result = "{}#{}#{}#{}".format(user_id, total_score,comments, extra_point)
+            csv_result = "{}#{}#{}#{}\n".format(user_id, total_score,comments, extra_point)
             with open(grade_file,'a') as f:
                 f.write(csv_result)
                 
