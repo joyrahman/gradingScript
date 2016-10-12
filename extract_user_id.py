@@ -3,7 +3,7 @@ def test(input_dir, file_name_pattern):
     for filename in os.listdir(input_dir):
         if file_name_pattern in filename:
             #get user id 
-            user_id = filename.split('OpenMP_')[1].split('_',1)[0]
+            user_id = filename.split('OpenMP_')[1].split('_')[0]
             print user_id
 
 
