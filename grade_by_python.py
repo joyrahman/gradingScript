@@ -104,7 +104,7 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
                 data_file   = datafile[q]
                 output_file = test_output[q]
                 result_file = correct_output[q]
-                print("Test:{}".format(q))
+                print("\nTest#:{}> ".format(q))
                 
                 for m in range(0,total_test_iteration):
                     temp_result = subprocess.check_output(['./run_test_cmd.sh \
