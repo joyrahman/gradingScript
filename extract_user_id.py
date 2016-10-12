@@ -1,3 +1,4 @@
+import os
 def test(input_dir, file_name_pattern):
     for filename in os.listdir(input_dir):
         if file_name_pattern in filename:
@@ -8,5 +9,5 @@ def test(input_dir, file_name_pattern):
 
 if __name__ == "__main__":
 	input_dir =  './submission'
-    file_name_pattern = "k_means.c"
+    	file_name_pattern = "k_means.c"
 	test(input_dir, file_name_pattern)
