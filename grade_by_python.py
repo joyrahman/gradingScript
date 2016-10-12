@@ -204,7 +204,7 @@ def main(input_dir,target_file_name,source_zip,grade_file, file_name_pattern):
             total_score =  total_test_score + perf_score
             csv_result = "{}\t{}\t{}\t{}".format(user_id, total_score,comments, extra_point)
             with open(grade_file,'a') as f:
-                f.write(final_result)
+                f.write(csv_result)
                 
 
             
