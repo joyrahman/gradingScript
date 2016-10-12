@@ -10,6 +10,7 @@ import subprocess
 def main(input_dir):
     target_file_name = "k_means.c"
     source_zip  = "source.zip"
+    grade_file = "assignment3.csv"
     
     datafile = ['example1_k2_m10.txt',\
         'example2_k3_m30.txt',\
@@ -118,8 +119,11 @@ def main(input_dir):
                     if (val==-1):
                         testcase_result[q] = [False]
                 
-
+            total_test_score  = 0
             print testcase_result 
+            for id in range(0,total_test):
+                if (testcase_result[id])==True:
+                    total_test_score +=10
 
 
             #performance analysis
@@ -151,27 +155,27 @@ def main(input_dir):
             perf_val = exec8*100/exec1
             #print perf_val
 
-            score = 0
+            perf_score = 0
             if perf_val<=40:
-                score = 20
+                perf_score = 20
 
             elif perf_val>40 and perf_val<=50:
-                score = 17
+                perf_score = 17
                 
             elif perf_val>50 and perf_val<=60:
-                score = 14
+                perf_score = 14
 
             elif perf_val>60 and perf_val<=70:
-                score = 11
+                perf_score = 11
 
             elif perf_val>70 and perf_val<=80:
-                score = 8
+                perf_score = 8
 
 
             elif perf_val>80 and perf_val<=90:
-                score = 5
+                perf_score = 5
             elif perf_val>90 and perf_val<=100:
-                score = 2
+                perf_score = 2
 
 
 
@@ -186,9 +190,13 @@ def main(input_dir):
 
 
             # write the result to the file
-            test_case_score = 0
-
-            print("TestCase Score:{}, Performance_Score:{}, Extra_Points:{},Exec8:{},Exec1:{},Percentage:{}",test_case_score, score, extra_point,exec8, exec1,perf_val)
+            
+            final_result = "ID:{}, TestCase Score:{}, Performance_Score:{}, Extra_Points:{},Exec8:{},Exec1:{},Percentage:{}".format(user_id, total_test_score, perf_score, extra_point,exec8, exec1,perf_val)
+            print(final_result)
+            csv_result = "{},{},{},{},{},{},{}".format(user_id, total_test_score, perf_score, extra_point,exec8, exec1,perf_val)
+            with open(grade_file,'wa') as f:
+                f.write(final_result)
+                
 
             
             
